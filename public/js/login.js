@@ -29,9 +29,9 @@ const signupFormHandler = async (event) => {
   event.preventDefault();
 
   // Gather the data from the form elements on the page
-  const name = document.querySelector('#user-signup').value.trim();
-  const email = document.querySelector('#email-signup').value.trim();
-  const password = document.querySelector('#password-signup').value.trim();
+  const name = document.querySelector('#userSignup').value.trim();
+  const email = document.querySelector('#emailSignup').value.trim();
+  const password = document.querySelector('#passwordSignup').value.trim();
 
   if (name && email && password) {
     // Send the e-mail and password to the server
@@ -53,10 +53,8 @@ document.getElementById("logButt").addEventListener("click", function() {
   window.location.href = "/login";
 });
 
-document
-  .querySelector('#login-form')
-  .addEventListener('submit', loginFormHandler);
+// document
+//   .querySelector('.login-form')
+//   .addEventListener('submit', loginFormHandler);
 
-document
-  .querySelector('.signup-form')
-  .addEventListener('submit', signupFormHandler);
+document.getElementById("signUpForm").addEventListener('click', signupFormHandler);

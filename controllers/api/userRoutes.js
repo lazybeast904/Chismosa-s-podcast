@@ -1,30 +1,35 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 
+router.get('/', async (req, res) => {
+  try {
+    const users = await User.findAll({});
+
+    res.json(users);
+    
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+  });
+
 router.post('/', async (req, res) => {
   try {
-    const { username, email, password } = req.body;
-
-    // Check if the user is signing up with the admin credentials
-    const isAdminUser = email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD;
-
-    const userData = await User.create({
-      name: username,
-      email: email,
-      password,
-      isAdmin: isAdminUser,
+    const dbUserData = await User.create({
+      username: req.body.username,
+      email: req.body.email,
+      password: req.body.password,
     });
 
-    // Create session variables based on the logged in user
+    // Set up sessions with a 'loggedIn' variable set to `true`
     req.session.save(() => {
-      req.session.userId = userData.id;
       req.session.loggedIn = true;
-      
-      res.json({ user: userData, message: 'You are now logged in!' });
-    });
 
+      res.status(200).json(dbUserData);
+    });
   } catch (err) {
-    res.status(400).json(err);
+    console.log(err);
+    res.status(500).json(err);
   }
 });
 
