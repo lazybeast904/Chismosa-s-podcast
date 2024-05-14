@@ -1,5 +1,3 @@
-// TODO: Change or add any User-specific API routes here
-
 const router = require('express').Router();
 const { User } = require('../../models');
 
@@ -8,13 +6,13 @@ router.post('/', async (req, res) => {
     const { username, email, password } = req.body;
 
     // Check if the user is signing up with the admin credentials
-    const isAdminUser = username === process.env.ADMIN_USERNAME && password === process.env.ADMIN_PASSWORD;
+    const isAdminUser = email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD;
 
     const userData = await User.create({
       name: username,
-      email,
+      email: email,
       password,
-      isAdmin: isAdminUser, // Set the isAdmin property based on the check
+      isAdmin: isAdminUser,
     });
 
     // Create session variables based on the logged in user
@@ -32,33 +30,38 @@ router.post('/', async (req, res) => {
 
 router.post('/login', async (req, res) => {
   try {
-    // Find the user who matches the posted e-mail address
-    const userData = await User.findOne({ where: { email: req.body.email } });
+    const { email, password } = req.body;
 
-    if (!userData) {
-      res
-        .status(400)
-        .json({ message: 'Incorrect email or password, please try again' });
-      return;
+    // Check if the provided credentials match the admin's credentials
+    const isAdminUser = email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD;
+
+    let userData;
+
+    if (isAdminUser) {
+      // If the user is an admin, set the user data accordingly
+      userData = {
+        id: 1, 
+        name: 'Admin',
+        email: process.env.ADMIN_EMAIL,
+        isAdmin: true,
+      };
+    } else {
+      // If not admin, proceed with regular user authentication
+      userData = await User.findOne({ where: { email: email } });
+
+      if (!userData || !(await userData.checkPassword(password))) {
+        // Invalid credentials
+        res.status(400).json({ message: 'Incorrect email or password, please try again' });
+        return;
+      }
     }
 
-    // Verify the posted password with the password store in the database
-    const validPassword = await userData.checkPassword(req.body.password);
-
-    if (!validPassword) {
-      res
-        .status(400)
-        .json({ message: 'Incorrect email or password, please try again' });
-      return;
-    }
-
-    // Create session variables based on the logged in user
-    req.session.save(() => {
-      req.session.userId = userData.id;
-      req.session.loggedIn = true;
-      
-      res.json({ user: userData, message: 'You are now logged in!' });
-    });
+    // Create session variables based on the logged-in user
+    req.session.userId = userData.id;
+    req.session.loggedIn = true;
+    
+    // Send a JSON response indicating successful login
+    res.json({ user: userData, message: 'You are now logged in!', redirectTo: '/' });
 
   } catch (err) {
     res.status(400).json(err);
