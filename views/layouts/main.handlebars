@@ -4,26 +4,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Application Name!</title>
-  <link rel="stylesheet" href="/css/jass.css">
+  <title>Las Chismosas</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
+  <link href="https://db.onlinewebfonts.com/c/17363ed78e2b5e259e228bad72318a1f?family=American+Typewriter+Bold" rel="stylesheet">
 </head>
 
-<body>
-  <header class="display-flex justify-space-between align-center p-2">
-    <h1>
-      Application Name!
-    </h1>
-    {{#if loggedIn}}
-    <nav>
-      <button class="btn" id="logout">logout</button>
-    </nav>
-    {{else}}
-        <a href="/login">Login</a>
-    {{/if}}
-  </header>
-  <main class="container container-fluid mt-5">
-    <p>Change any shared markup in views/layouts/main.handlebars</p>
+  <header class="row row-center no-padding">
+    <div class="column column-10"></div>
+    <img class ="column column-10 column-offset-10 logoimg" src="/css/assets/left_girl.png">
+    <section class="column column-40 no-padding">
+      <div"row"><h1 id="title" class="column column-100 column-offset-5"> Las Chismosas</h1></div>
+      <nav class="row row-baseline">
+         {{#if loggedIn}}
+      <button class="btn navButt column column-offset-10" id="logout">logout</button>
+          {{else}}
+    <img class ="column lipButt column-25 column-offset-10 " src="/css/assets/loginlips.png">
+        {{/if}}
+        <img class ="column lipButt column-25 column-offset-33 " src="/css/assets/aboutlips.png">
+      </nav>
+
+    </section>
+    <img class ="column column-10 logoimg float-left" src="/css/assets/right_girl.png">
+    </header>
+  <main class="row ">
+    <section class="column column-33 column-offset-33 modal" id="test">
     {{{ body }}}
+    </section>
+    <section class="column column-5 column-offset-15"> </section>
+    <section class="column column-20 column-offset-15 splash"> Sign up to leave juicy gossip! 
+      It might be featured in the podcast!
+ </section>
+    <section class="column column-5 column-offset-15"> </section>
   </main>
   <footer>
       
