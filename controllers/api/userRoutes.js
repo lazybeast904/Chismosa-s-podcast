@@ -17,9 +17,17 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   try {
-    console.log(req.body)
-    // Find the user who matches the posted e-mail address
-    const userData = await User.create(req.body);
+    const { username, email, password } = req.body;
+
+    // Check if the user is signing up with the admin credentials
+    const isAdminUser = username === process.env.ADMIN_USERNAME && password === process.env.ADMIN_PASSWORD;
+
+    const userData = await User.create({
+      name: username,
+      email,
+      password,
+      isAdmin: isAdminUser, // Set the isAdmin property based on the check
+    });
 
     // Create session variables based on the logged in user
     req.session.save(() => {
