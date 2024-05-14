@@ -1,35 +1,17 @@
-<h2>Login</h2>
-
-<section class="d-flex flex-column"></section>
-<form class="form login-form">
-  <div class="form-group">
-    <label for="email-login">email:</label>
-    <input class="form-input" type="text" id="email-login" />
-  </div>
-  <div class="form-group">
-    <label for="password-login">password:</label>
-    <input class="form-input" type="password" id="password-login" />
-  </div>
-  <div class="form-group">
-    <button class="btn btn-primary" type="submit">login</button>
-  </div>
+<section class="row row-center">
+    <form class="column">
+  <fieldset>
+    <h2 class="center"> Log in</h2>
+    <label for="emailField">Email</label>
+    <input type="text" placeholder="pickalittle@email.com" id="emailField">
+      <label for="passField">Password</label>
+    <input type="password" placeholder="" id="passField">
 </form>
-<form class="form signup-form">
-  <div class="form-group">
-    <label for="user-signup">name:</label>
-    <input class="form-input" type="text" id="user-signup" />
-  </div>
-  <div class="form-group">
-    <label for="email-signup">email:</label>
-    <input class="form-input" type="text" id="email-signup" />
-  </div>
-  <div class="form-group">
-    <label for="password-signup">password:</label>
-    <input class="form-input" type="password" id="password-signup" />
-  </div>
-  <div class="form-group">
-    <button class="btn btn-primary" type="submit">sign up</button>
-  </div>
-</form>
+</section>
+ <nav class="row ">
+    <div class="column column-20"> </div>
+    <button class="column column-60" >Login</button>
+    <div class="column column-20"> </div>
+  </nav>
 
 <script src="/js/login.js"></script>
