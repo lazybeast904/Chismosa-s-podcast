@@ -35,6 +35,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
       user,
       // Pass the logged in flag to the template
       loggedIn: req.session.loggedIn,
+      isAdmin: user.isAdmin,
     });
   } catch (err) {
     res.status(500).json(err);
