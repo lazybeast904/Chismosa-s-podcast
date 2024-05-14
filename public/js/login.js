@@ -47,6 +47,10 @@ const signupFormHandler = async (event) => {
   }
 };
 
+document.getElementById("logButt").addEventListener("click", function() {
+  window.location.href = "/login";
+});
+
 document
   .querySelector('.login-form')
   .addEventListener('submit', loginFormHandler);

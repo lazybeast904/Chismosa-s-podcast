@@ -51,6 +51,10 @@ h1 {
     text-align: center;
 }
 
+#logButt{
+    cursor: pointer; /* Change cursor to pointer on hover for better UX */
+}
+
 .logoimg {
     max-height: 170px;
     min-height: 170px;
