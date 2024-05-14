@@ -1,4 +1,3 @@
-// TODO: Change or add any View routes here
 
 const router = require('express').Router();
 const { User } = require('../models');
@@ -21,6 +20,18 @@ router.get('/', async (req, res) => {
     } catch (err) {
         res.status(500).json(err);
     }
+});
+
+router.get('/main', withAuth, async (req, res) => {
+  try {
+    // Render the 'main' view with any necessary data
+    res.render('main', {
+      // Pass data to the view if needed
+      loggedIn: req.session.loggedIn,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 // Prevent non logged in users from viewing the dashboard
