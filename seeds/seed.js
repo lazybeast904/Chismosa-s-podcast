@@ -8,7 +8,7 @@ const seedDatabase = async () => {
   await sequelize.sync({ force: true });
 
   await User.create({
-    id: 1,
+   // id: ,
     name: 'Admin',
     email: process.env.ADMIN_EMAIL,
     password: process.env.ADMIN_PASSWORD,

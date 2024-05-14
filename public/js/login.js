@@ -15,7 +15,7 @@ const loginFormHandler = async (event) => {
       const data = await response.json();
       alert(data.message);
       // Redirect to the specified URL after successful login
-      window.location.href = data.redirectTo || '/';
+      window.location.href = data.redirectTo || '/homepage';
     } else {
       alert('Failed to log in');
     }

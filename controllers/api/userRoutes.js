@@ -3,18 +3,38 @@ const { User } = require('../../models');
 
 router.post('/', async (req, res) => {
   try {
+    const {username, email, password} = req.body;
+    req.session.save(() => {
+      req.session.UserId = userData.id;
+      req.session.loggedIn = true;
+
+      res.json({ user: userData, message: 'You are now logged in!'});
+    });
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
+router.post('/login', async (req, res) => {
+  const { email, password } = req.body;
+  const user = user.find(user => user.email === email);
+  if (!user) {
+    return res.status(404).json({ message: 'User not found' });
+  }
+  const match = await bcrypt.compare(password, user.password);
+
+  if (match) {
+    return res.status(200).json({ message: 'login succesful' })
+  } else {
+    return res.status(401).json({ message: 'login failed' })
+  }
+});
+
+router.post('/', async (req, res) => {
+  try {
     const { username, email, password } = req.body;
 
     // Check if the user is signing up with the admin credentials
-    const isAdminUser = email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD;
-
-    const userData = await User.create({
-      name: username,
-      email: email,
-      password,
-      isAdmin: isAdminUser,
-    });
-
     // Create session variables based on the logged in user
     req.session.save(() => {
       req.session.userId = userData.id;
