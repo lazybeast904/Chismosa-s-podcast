@@ -17,28 +17,21 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   try {
-    const { username, email, password } = req.body;
-
-    // Check if the user is signing up with the admin credentials
-    const isAdminUser = username === process.env.ADMIN_USERNAME && password === process.env.ADMIN_PASSWORD;
-
-    const userData = await User.create({
-      name: username,
-      email,
-      password,
-      isAdmin: isAdminUser, // Set the isAdmin property based on the check
+    const dbUserData = await User.create({
+      username: req.body.username,
+      email: req.body.email,
+      password: req.body.password,
     });
 
-    // Create session variables based on the logged in user
+    // Set up sessions with a 'loggedIn' variable set to `true`
     req.session.save(() => {
-      req.session.userId = userData.id;
       req.session.loggedIn = true;
-      
-      res.json({ user: userData, message: 'You are now logged in!' });
-    });
 
+      res.status(200).json(dbUserData);
+    });
   } catch (err) {
-    res.status(400).json(err);
+    console.log(err);
+    res.status(500).json(err);
   }
 });
 
