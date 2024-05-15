@@ -16,15 +16,16 @@
     <section class="column column-40 no-padding">
       <div"row"><h1 id="title" class="column column-100 column-offset-5"> Las Chismosas</h1></div>
       <nav class="row row-baseline">
-         {{#if loggedIn}}
-       <img id="logout" class="column lipButt column-25 column-offset-6 " src="/css/assets/logoutlips.png">
-          {{else}}
-    <img id="logButt"class="column lipButt column-25 column-offset-10 " src="/css/assets/loginlips.png">
-    <img id="signUp" class="column lipButt column-25 column-offset-6 " src="/css/assets/signlips.png">
+        {{#if loggedIn}}
+         <img id="logout" class="column lipButt column-25 column-offset-10" src="/css/assets/logoutLips.png" onclick="navigateTo('/')">
+        {{else}}
+          <img id="logButt" class="column lipButt column-25 column-offset-10" src="/css/assets/loginlips.png" onclick="navigateTo('/login')">
+          {{#unless loggedIn}}
+            <img id="signUp" class="column lipButt column-25 column-offset-6" src="/css/assets/signlips.png" onclick="navigateTo('/')">
+          {{/unless}}
         {{/if}}
-        <img id="aboutLips" class ="column lipButt column-25 column-offset-15 " src="/css/assets/aboutlips.png">
+        <img id="aboutLips" class="column lipButt column-25 column-offset-15" src="/css/assets/aboutlips.png">
       </nav>
-
     </section>
     <img class ="column column-10 logoimg float-left" src="/css/assets/right_girl.png">
     </header>
@@ -43,6 +44,7 @@
   </footer>
 
   <script src="/js/logout.js"></script>
+  <script src="/js/main.js"></script>
 </body>
 
 </html>
