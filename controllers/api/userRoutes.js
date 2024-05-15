@@ -1,5 +1,51 @@
 const router = require('express').Router();
-const { User } = require('../../models');
+const { User, userData } = require('../../models');
+
+router.post('/', async (req, res) => {
+  try {
+    const dbUserData = await User.create(req.body);
+
+    // Set up sessions with a 'loggedIn' variable set to `true`
+    req.session.save(() => {
+      req.session.user_id = dbUserData.id;
+      req.session.loggedIn = true;
+
+      res.status(200).json(dbUserData);
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+router.post('/login', async (req, res) => {
+  try {
+    const dbUserData = await User.findOne({ where: { email: req.body.email } });
+  if (!userData) {
+    res
+    .status(400)
+    .json({ message: 'Invalid login, please try again' });
+    return;
+  }
+
+  const validPassword = await userData.checkPassword(req.body.password);
+
+  if (!validPassword) {
+    res
+    .status(400)
+    .json({ message: 'Invalid login, please try again' });
+    return;
+  }
+  req.session.save(() => {
+    req.session.dbUserData = dbUserData.id;
+    req.session.logged_In = true;
+   
+    res.json({user: dbUserData, message: 'You are now logged in!'});
+  });
+  } catch (err) {
+    res.status(400).json(err);
+  }
+})
 
 router.get('/', async (req, res) => {
   try {
@@ -12,26 +58,6 @@ router.get('/', async (req, res) => {
     res.status(500).json({ error: err.message });
   }
   });
-
-router.post('/', async (req, res) => {
-  try {
-    const dbUserData = await User.create({
-      username: req.body.username,
-      email: req.body.email,
-      password: req.body.password,
-    });
-
-    // Set up sessions with a 'loggedIn' variable set to `true`
-    req.session.save(() => {
-      req.session.loggedIn = true;
-
-      res.status(200).json(dbUserData);
-    });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
-});
 
 router.post('/login', async (req, res) => {
   try {
@@ -74,7 +100,7 @@ router.post('/login', async (req, res) => {
 });
 
 router.post('/logout', (req, res) => {
-  if (req.session.loggedIn) {
+  if (req.session.logged_in) {
     // Remove the session variables
     req.session.destroy(() => {
       res.status(204).end();
@@ -83,5 +109,6 @@ router.post('/logout', (req, res) => {
     res.status(404).end();
   }
 });
+
 
 module.exports = router;

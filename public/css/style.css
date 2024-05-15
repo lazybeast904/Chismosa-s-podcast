@@ -54,6 +54,12 @@ h1 {
 #logButt{
     cursor: pointer; /* Change cursor to pointer on hover for better UX */
 }
+#aboutLips{
+    cursor: pointer;
+}
+#sighnUp{
+    cursor: pointer;
+}
 
 .logoimg {
     max-height: 170px;
@@ -105,3 +111,9 @@ background-repeat: repeat;
     border: var(--border);
     height: 20%;
 }
+.row {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    width: 100%;
+  }

@@ -8,7 +8,6 @@ class User extends Model {
     return bcrypt.compareSync(loginPw, this.password);
   }
 }
-
 User.init(
   {
     id: {
@@ -49,9 +48,9 @@ User.init(
       },
       beforeUpdate: async (userData) => {
         if (userData.password) {
-            userData.password = await bcrypt.hash(userData.password, 10);
+          userData.password = await bcrypt.hash(userData.password, 10);
         }
-        
+
         return userData;
       },
     },
