@@ -19,25 +19,9 @@ const seedDatabase = async () => {
      await Gossip.bulkCreate(gossipData, {
       individualHooks: true,
       returning: true,
-    })
+    });
 
-  //   for (const user of userData) {
-  //   await User.create({
-  //     //id: 1,
-  //     name: 'Admin',
-  //     email: process.env.ADMIN_EMAIL,
-  //     password: process.env.ADMIN_PASSWORD,
-  //     isAdmin: true,
-  //   });
-  // }
-    // for (const user of userData) {
-    // await User.create({
-    //   //id: 1,
-    //   name: 'Admin',
-    //   email: process.env.ADMIN_EMAIL,
-    //   password: process.env.ADMIN_PASSWORD,
-    //   isAdmin: true,
-    // });
+  
   
 
   process.exit(0);
