@@ -1,0 +1,119 @@
+:root{
+    --main-color: #8c52ff;
+    --sub-color: #8ad1c1;
+    --sub-color2: #d73521;
+    --main-dark: #0d0c1dff;
+    --sub-dark:  #13070C;
+    --main-light: #fff6ff;
+    --sub-light: #DDC8C4;
+    --gray: rgb(126, 125, 125);
+    --border: 5px solid var(--main-dark);
+    
+}
+html,
+body,
+main{
+  height: 100%;
+}
+
+
+@font-face {
+    font-family: 'gossip';
+    src: url('./assets/Benedict\ Regular.otf'); 
+  }
+
+  @font-face {
+    font-family: "American Typewriter Bold";
+    src: url("https://db.onlinewebfonts.com/t/17363ed78e2b5e259e228bad72318a1f.eot");
+    src: url("https://db.onlinewebfonts.com/t/17363ed78e2b5e259e228bad72318a1f.eot?#iefix")format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/17363ed78e2b5e259e228bad72318a1f.woff2")format("woff2"),
+    url("https://db.onlinewebfonts.com/t/17363ed78e2b5e259e228bad72318a1f.woff")format("woff"),
+    url("https://db.onlinewebfonts.com/t/17363ed78e2b5e259e228bad72318a1f.ttf")format("truetype"),
+    url("https://db.onlinewebfonts.com/t/17363ed78e2b5e259e228bad72318a1f.svg#American Typewriter Bold")format("svg");
+}
+
+header {
+   background-color: var(--main-color);
+   justify-items: center;
+   border: var(--border);
+   max-height: 180px;
+   width: 100%;
+}
+
+#title{
+    font-size: 4em;;
+}
+
+h1 {
+    font-size: 80px;
+    color: var(--main-light);
+    font-family: 'gossip';
+    text-align: center;
+}
+
+#logButt{
+    cursor: pointer; /* Change cursor to pointer on hover for better UX */
+}
+#aboutLips{
+    cursor: pointer;
+}
+#sighnUp{
+    cursor: pointer;
+}
+
+.logoimg {
+    max-height: 170px;
+    min-height: 170px;
+}
+
+body{
+    background-color: var(--sub-dark);
+}
+
+main {
+    background-color: var(--sub-color1);
+opacity: 1;
+background-image:  linear-gradient(135deg, #edf7f5 25%, transparent 25%), linear-gradient(225deg, #edf7f5 25%, transparent 25%), linear-gradient(45deg, #edf7f5 25%, transparent 25%), linear-gradient(315deg, #edf7f5 25%, #8ad1c1 25%);
+background-position:  4px 0, 4px 0, 0 0, 0 0;
+background-size: 4px 4px;
+background-repeat: repeat;
+}
+
+.navButt{
+    background-color: var(--sub-color2)
+}
+
+#test{
+    background-color: var(--main-light);
+    color: black;
+    height: 40%;
+}
+
+.modal{
+    border: var(--border);
+}
+
+.modalHead{
+    border-bottom: 5px solid var(--main-dark);
+}
+
+.center{
+    text-align: center;
+    font-family: "American Typewriter Bold";
+}
+
+.splash{
+    font-size:23px;
+    text-align: center;
+    font-family: "American Typewriter Bold";
+    background-color: var(--sub-light);
+    max-width: 5px;
+    border: var(--border);
+    height: 20%;
+}
+.row {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    width: 100%;
+  }
