@@ -57,7 +57,7 @@ h1 {
 #aboutLips{
     cursor: pointer;
 }
-#signUp{
+#signUp, #spotifyButt{
     cursor: pointer;
 }
 
@@ -86,7 +86,7 @@ background-repeat: repeat;
 #test{
     background-color: var(--main-light);
     color: black;
-    height: 40%;
+    height: 50%;
 }
 
 .modal{
@@ -117,3 +117,11 @@ background-repeat: repeat;
     padding: 0;
     width: 100%;
   }
+#spotifyButt{
+    height: 75px;
+    width: 100px;
+    margin-left: 38%;
+}
+.asideSignUp{
+    height: 25%;
+}

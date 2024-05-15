@@ -1,4 +1,3 @@
-
 const router = require('express').Router();
 const { User } = require('../models');
 const withAuth = require('../utils/auth');
@@ -61,6 +60,15 @@ router.get('/login', (req, res) => {
   }
 
   res.render('login');
+});
+
+router.get('/about', async (req, res) => {
+  try {
+    // Render the 'about' view with any necessary data
+    res.render('about', {});
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 module.exports = router;
