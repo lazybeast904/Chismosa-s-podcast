@@ -30,14 +30,14 @@ router.get('/', async (req, res) => {
 router.get('/user/:id', async (req, res) => {
   try {
     const userData = await User.findByPk(req.params.id, {
-      include: [
-        {
-          model: User,
-          attributes: { exclude: ['password'] },
-          order: [['name', 'ASC']],
-        },
-      ],
-    });
+    //   include: [
+    //     {
+    //       model: User,
+    //       attributes: { exclude: ['password'] },
+    //       order: [['name', 'ASC']],
+    //     },
+    //   ],
+     });
     const user = userData.get({ plain: true });
 
     res.render('user', {
