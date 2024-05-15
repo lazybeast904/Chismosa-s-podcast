@@ -3,26 +3,34 @@ const { Gossip } = require('../../models');
 
 
 router.get('/', async (req, res) => {
+  try {
+    const gossip = await Gossip.findAll({});
+
+    res.json(gossip);
+    
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+  });
+
+  router.post('/', async (req, res) => {
     try {
-      // Get all projects and JOIN with user data
-      const gossipData = await Gossip.findAll({
-        include: [
-          {
-            model: User,
-            attributes: ['name'],
-          },
-        ],
+      const dbUserData = await Gossip.create({
+        title: req.body.title,
+        story: req.body.story,
+        source: req.body.source,
+        // user: req.body.user
       });
   
-      // Serialize data so the template can read it
-      const gossip = gossipData.map((gossip) => gossip.get({ plain: true }));
+      // Set up sessions with a 'loggedIn' variable set to `true`
+      req.session.save(() => {
+        req.session.loggedIn = true;
   
-      // Pass serialized data and session flag into template
-      res.render('homepage', { 
-        projects: gossip, 
-        logged_in: req.session.logged_in 
+        res.status(200).json(dbUserData);
       });
     } catch (err) {
+      console.log(err);
       res.status(500).json(err);
     }
   });
@@ -48,4 +56,5 @@ router.get('/', async (req, res) => {
       res.status(500).json(err);
     }
   });
-  
+
+  module.exports = router;
