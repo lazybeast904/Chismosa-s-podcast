@@ -23,5 +23,10 @@
     "name": "Blake",
     "email": "the_blake@yahoo.com",
     "password": "password12345"
+  },
+  {"name": "Admin",
+  "email": "admin@yahoo.com",
+  "password": "Admin1234",
+  "isAdmin": true
   }
 ]
