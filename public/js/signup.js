@@ -6,6 +6,8 @@ const signupFormHandler = async (event) => {
     const name = document.querySelector('#nameField').value.trim();
     const email = document.querySelector('#emailField').value.trim();
     const password = document.querySelector('#passField').value.trim();
+
+    console.log(name);
   
     if (name && email && password) {
       // Send the e-mail and password to the server
@@ -23,6 +25,4 @@ const signupFormHandler = async (event) => {
     }
   };
   
-  document
-  .querySelector('.sighnUpForm')
-  .addEventListener('submit', signupFormHandler);
+  document.getElementById("signUpForm").addEventListener('click', signupFormHandler);
