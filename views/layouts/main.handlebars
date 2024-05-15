@@ -24,7 +24,7 @@
             <img id="signUp" class="column lipButt column-25 column-offset-6" src="/css/assets/signlips.png" onclick="navigateTo('/')">
           {{/unless}}
         {{/if}}
-        <img id="aboutLips" class="column lipButt column-25 column-offset-15" src="/css/assets/aboutlips.png">
+        <img id="aboutLips" class="column lipButt column-25 column-offset-15" src="/css/assets/aboutlips.png" onclick="navigateTo('/about')">
       </nav>
     </section>
     <img class ="column column-10 logoimg float-left" src="/css/assets/right_girl.png">
@@ -37,11 +37,13 @@
     {{{ body }}}
         {{/if}}
     </section>
-    <section class="column column-5 column-offset-15"> </section>
-    <section class="column column-20 column-offset-15 splash"> Sign up to leave juicy gossip! 
-      It might be featured in the podcast!
- </section>
-    <section class="column column-5 column-offset-15"> </section>
+    {{#unless loggedIn}}
+      <section class="column column-5 column-offset-15"> </section>
+      <section class="asideSignUp column column-20 column-offset-15 splash"> Sign up to leave juicy gossip! 
+        It might be featured in the podcast!
+      </section>
+      <section class="column column-5 column-offset-15"> </section>
+    {{/unless}}
   </main>
   <footer>
       
