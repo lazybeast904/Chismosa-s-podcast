@@ -17,11 +17,11 @@
       <div"row"><h1 id="title" class="column column-100 column-offset-5"> Las Chismosas</h1></div>
       <nav class="row row-baseline">
          {{#if loggedIn}}
-      <button class="btn navButt column column-offset-10" id="logout">logout</button>
+       <img id="logout" class="column lipButt column-25 column-offset-6 " src="/css/assets/logoutlips.png">
           {{else}}
     <img id="logButt"class="column lipButt column-25 column-offset-10 " src="/css/assets/loginlips.png">
+    <img id="signUp" class="column lipButt column-25 column-offset-6 " src="/css/assets/signlips.png">
         {{/if}}
-        <img id="sighnUp" class="column lipButt column-25 column-offset-6 " src="/css/assets/signlips.png">
         <img id="aboutLips" class ="column lipButt column-25 column-offset-15 " src="/css/assets/aboutlips.png">
       </nav>
 
@@ -30,11 +30,7 @@
     </header>
   <main class="row ">
     <section class="column column-33 column-offset-33 modal" id="test">
-       {{#if loggedIn}}
-      <p>testing</p>
-          {{else}}
     {{{ body }}}
-        {{/if}}
     </section>
     <section class="column column-5 column-offset-15"> </section>
     <section class="column column-20 column-offset-15 splash"> Sign up to leave juicy gossip! 
@@ -46,10 +42,7 @@
       
   </footer>
 
-  {{#if loggedIn}}
   <script src="/js/logout.js"></script>
-
-  {{/if}}
 </body>
 
 </html>
