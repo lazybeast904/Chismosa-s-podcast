@@ -3,7 +3,7 @@ const sequelize = require('../config/connection');
 const { User, Gossip } = require('../models');
 
 const userData = require('./userData.json');
-const gossipData = require('./GossipData.json')
+const gossipData = require('../models/gossipData.json');
 
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
@@ -21,15 +21,15 @@ const seedDatabase = async () => {
       returning: true,
     })
 
-    for (const user of userData) {
-    await User.create({
-      //id: 1,
-      name: 'Admin',
-      email: process.env.ADMIN_EMAIL,
-      password: process.env.ADMIN_PASSWORD,
-      isAdmin: true,
-    });
-  }
+    // for (const user of userData) {
+    // await User.create({
+    //   // id: 1,
+    //   name: 'Admin',
+    //   email: process.env.ADMIN_EMAIL,
+    //   password: process.env.ADMIN_PASSWORD,
+    //   isAdmin: true,
+    // });
+  // }
 
   process.exit(0);
 };

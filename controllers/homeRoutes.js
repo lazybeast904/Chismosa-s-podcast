@@ -1,18 +1,18 @@
 
 const router = require('express').Router();
-const { Gossip,User } = require('../models');
+const { Gossip, User } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
     try {
         const userData = await User.findAll({
-          include: [
-            {
-              model: User,
-            attributes: { exclude: ['password'] },
-            order: [['name', 'ASC']],
-            },
-          ],
+          // include: [
+          //   {
+          //     model: User,
+          //   attributes: { exclude: ['password'] },
+          //   order: [['name', 'ASC']],
+          //   },
+          // ],
         });
         
         const users = userData.map((user) => user.get({ plain: true }));
@@ -32,7 +32,7 @@ router.get('/user/:id', async (req, res) => {
     const userData = await User.findByPk(req.params.id, {
       include: [
         {
-          model: User,
+          model: Gossip,
           attributes: { exclude: ['password'] },
           order: [['name', 'ASC']],
         },
