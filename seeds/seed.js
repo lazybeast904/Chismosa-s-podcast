@@ -19,10 +19,7 @@ const seedDatabase = async () => {
      await Gossip.bulkCreate(gossipData, {
       individualHooks: true,
       returning: true,
-    });
-
-  
-  
+    })
 
   process.exit(0);
 };
