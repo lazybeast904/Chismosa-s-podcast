@@ -120,6 +120,7 @@ background-repeat: repeat;
 }
 .asideSignUp{
     height: 25%;
+    margin-top: 80px;
 }
 #title a {
     color: inherit;
