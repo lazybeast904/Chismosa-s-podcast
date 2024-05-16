@@ -13,6 +13,8 @@ router.post('/', async (req, res) => {
     // Set up sessions with a 'loggedIn' variable set to `true`
     req.session.save(() => {
       req.session.loggedIn = true;
+      req.session.name = dbUserData.name;
+      req.session.isAdmin = dbUserData.isAdmin;
 
       res.status(200).json(dbUserData);
     });
@@ -27,11 +29,11 @@ router.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
     // Check if the provided credentials match the admin's credentials
-    const isAdminUser = email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD;
+    const isAdmin = email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD;
 
     let userData;
 
-    if (isAdminUser) {
+    if (isAdmin) {
       // If the user is an admin, set the user data accordingly
       userData = {
         id: 1, 
@@ -53,9 +55,10 @@ router.post('/login', async (req, res) => {
     // Create session variables based on the logged-in user
     req.session.userId = userData.id;
     req.session.loggedIn = true;
-    
+    req.session.name = userData.name;
+      req.session.isAdmin = userData.isAdmin;
     // Send a JSON response indicating successful login
-    res.json({ user: userData, message: 'You are now logged in!', redirectTo: '/' });
+    res.json({ user: userData, message: 'You are now logged in!', redirectTo: '/dashboard' });
 
   } catch (err) {
     res.status(400).json(err);
