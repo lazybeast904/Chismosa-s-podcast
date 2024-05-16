@@ -3,23 +3,37 @@ const { User } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
-    try {
-        const userData = await User.findAll({
-            attributes: { exclude: ['password'] },
-            order: [['name', 'ASC']],
-        });
-        
-        const users = userData.map((project) => project.get({ plain: true }));
-        
-        res.render('homepage', {
-            users,
-            // Pass the logged in flag to the template
-            loggedIn: req.session.loggedIn,
-        });
-    } catch (err) {
+  try {
+      const userData = await User.findAll({
+          attributes: { exclude: ['password'] },
+          order: [['name', 'ASC']],
+      });
+      
+      const users = userData.map((project) => project.get({ plain: true }));
+
+      if (req.session.loggedIn) {
+          if (req.session.isAdmin) {
+              // Redirect to 'dashboard' if the user is an admin
+              res.render('gossip', {
+                  users,
+                  loggedIn: req.session.loggedIn,
+                  isAdmin: req.session.isAdmin,
+              });
+          } else {
+              // Redirect to 'homepage' if the user is logged in but not an admin
+              res.render('dashboard', {
+                  users,
+                  loggedIn: req.session.loggedIn,
+                  isAdmin: req.session.isAdmin,
+              });
+          }
+      } else {
+          res.render('homepage');
+      }
+  } catch (err) {
       res.status(500).json(err);
-    }
-  });
+  }
+});
 
 router.get('/main', withAuth, async (req, res) => {
   try {
@@ -45,7 +59,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
       user,
       // Pass the logged in flag to the template
       loggedIn: req.session.loggedIn,
-      isAdmin: user.isAdmin,
+      isAdmin: req.session.isAdmin,
     });
   } catch (err) {
     res.status(500).json(err);
