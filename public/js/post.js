@@ -31,8 +31,8 @@ async function processDatabaseTable() {
 
 function createDataEntryDiv(dataObject) {
     // Create a div element
-    const div = document.createElement('div');
-
+    const gossipPost = document.createElement('div');
+    gossipPost.style.backgroundColor= "black";
     // Create p elements to display the information
     const titleP = document.createElement('p');
     titleP.textContent = `Title: ${dataObject.title}`;
@@ -47,15 +47,15 @@ function createDataEntryDiv(dataObject) {
     storyP.textContent = `Story: ${dataObject.story}`;
 
     // Append the p elements to the div
-    div.appendChild(titleP);
-    div.appendChild(sourceP);
-    div.appendChild(storyP);
-    div.appendChild(userP);
+    gossipPost.appendChild(titleP);
+    gossipPost.appendChild(sourceP);
+    gossipPost.appendChild(storyP);
+    gossipPost.appendChild(userP);
 
     // Append the div to the section with id "gossip"
     const gossipSection = document.getElementById('gossip');
     if (gossipSection) {
-        gossipSection.appendChild(div);
+        gossipSection.appendChild(gossipPost);
     } else {
         console.error('Section with id "gossip" not found');
     }
