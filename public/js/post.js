@@ -37,6 +37,9 @@ function createDataEntryDiv(dataObject) {
     const titleP = document.createElement('p');
     titleP.textContent = `Title: ${dataObject.title}`;
 
+    const userP = document.createElement('p');
+    userP.textContent = `Title: ${dataObject.user}`;
+
     const sourceP = document.createElement('p');
     sourceP.textContent = `Source: ${dataObject.source}`;
 
@@ -47,6 +50,7 @@ function createDataEntryDiv(dataObject) {
     div.appendChild(titleP);
     div.appendChild(sourceP);
     div.appendChild(storyP);
+    div.appendChild(userP);
 
     // Append the div to the section with id "gossip"
     const gossipSection = document.getElementById('gossip');
