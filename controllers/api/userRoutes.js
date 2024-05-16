@@ -29,7 +29,7 @@ router.post('/', async (req, res) => {
       req.session.isAdmin = dbUserData.isAdmin; 
 
       // res.status(200).json(dbUserData);
-      res.redirect("/", {user:dbUserData, loggedIn:req.session.loggedIn})
+      res.redirect("/")
     });
   } catch (err) {
     console.log(err);
