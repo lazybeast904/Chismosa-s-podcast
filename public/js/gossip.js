@@ -2,7 +2,7 @@ const gossipFormHandler = async (event) => {
     // Stop the browser from submitting the form so we can do so with JavaScript
     event.preventDefault();
     // Gather the data from the form elements on the page
-    const title = document.querySelector('#nameField').value.trim();
+    const title = document.querySelector('#titleField').value.trim();
     const source = document.querySelector('#sourceField').value.trim();
     const story = document.querySelector('#storyField').value.trim();
     const userField = document.querySelector('#userField');

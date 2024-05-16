@@ -1,6 +1,4 @@
 
-
-
 async function fetchDataFromAPI() {
     try {
         const response = await fetch('/api/gossip');
