@@ -1,0 +1,51 @@
+{{#if loggedIn}}
+{{#if isAdmin}}
+  <p>admin sees this</p>
+{{else}}
+ <section class="row row-center">
+    <form class="column">
+  <fieldset class="signup-form">
+    <h2 class="center"> Submit some Gossip!</h2>
+    <label for="nameField">Title</label>
+    <input type="text" placeholder="A good label for this story" id="titleField">
+     <label for="nameField">Story</label>
+    <input type="text" placeholder="All the juicy details" id="storyField">
+    <label for="emailField">Source</label>
+    <input type="text" placeholder="reddit, first-hand, friend, etc" id="sourceField">
+      <label for="anon">Anonymous</label>
+    <input type="checkbox" placeholder="" id="anon">
+  </fieldset>
+</form>
+</section>
+ <nav class="row ">
+    <div class="column column-20"> </div>
+        <button id= "gossipForm" class="column column-60">Submit</button>
+    <div class="column column-20"> </div>
+</nav>
+   <script src="/js/gossip.js"></script>
+   {{/if}}
+
+  {{else}}
+
+<section class="row row-center">
+    <form class="column">
+  <fieldset class="signup-form">
+    <h2 class="center"> Sign Up</h2>
+    <label for="nameField">Name</label>
+    <input type="text" placeholder="Eulalie Shinn" id="nameField">
+    <label for="emailField">Email</label>
+    <input type="text" placeholder="pickalittle@email.com" id="emailField">
+      <label for="passField">Password</label>
+    <input type="password" placeholder="" id="passField">
+  </fieldset>
+</form>
+</section>
+ <nav class="row ">
+    <div class="column column-20"> </div>
+        <button id= "signUpForm" class="column column-60">Submit</button>
+    <div class="column column-20"> </div>
+</nav>
+   <script src="/js/signup.js"></script>
+
+
+  {{/if}}

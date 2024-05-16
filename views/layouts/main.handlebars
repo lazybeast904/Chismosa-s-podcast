@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Las Chismosas</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
+  <link href="https://db.onlinewebfonts.com/c/17363ed78e2b5e259e228bad72318a1f?family=American+Typewriter+Bold" rel="stylesheet">
+</head>
+
+  <header class="row row-center no-padding">
+    <div class="column column-10"></div>
+    <img class ="column column-10 column-offset-10 logoimg" src="/css/assets/left_girl.png">
+    <section class="column column-40 no-padding">
+      <div"row"><h1 id="title" class="column column-100 column-offset-5"> Las Chismosas</h1></div>
+      <nav class="row row-baseline">
+        {{#if loggedIn}}
+ <img id="logout" class="column lipButt column-25 column-offset-10" src="/css/assets/logoutLips.png" onclick="navigateTo('/')">
+        {{else}}
+          <img id="logButt" class="column lipButt column-25 column-offset-10" src="/css/assets/loginlips.png" onclick="navigateTo('/login')">
+          {{#unless loggedIn}}
+            <img id="signUp" class="column lipButt column-25 column-offset-6" src="/css/assets/signlips.png" onclick="navigateTo('/')">
+          {{/unless}}
+        {{/if}}
+        <img id="aboutLips" class="column lipButt column-25 column-offset-15" src="/css/assets/aboutlips.png" onclick="navigateTo('/about')">
+      </nav>
+    </section>
+    <img class ="column column-10 logoimg float-left" src="/css/assets/right_girl.png">
+    </header>
+  <main class="row ">
+    <section class="column column-33 column-offset-33 modal" id="test">
+    {{{ body }}}
+    </section>
+    {{#unless loggedIn}}
+      <section class="column column-5 column-offset-15"> </section>
+      <section class="asideSignUp column column-20 column-offset-15 splash"> Sign up to leave juicy gossip! 
+        It might be featured in the podcast!
+      </section>
+      <section class="column column-5 column-offset-15"> </section>
+    {{/unless}}
+  </main>
+  <footer>
+      
+  </footer>
+
+  {{#if loggedIn}}
+  <script src="/js/logout.js"></script>
+
+  {{/if}}
+  <script src="/js/main.js"></script>
+</body>
+
+</html>
