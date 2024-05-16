@@ -8,19 +8,21 @@
     --sub-light: #DDC8C4;
     --gray: rgb(126, 125, 125);
     --border: 5px solid var(--main-dark);
-    
 }
 html,
 body,
 main{
   height: 100%;
+  display: flex;
+  flex-flow: wrap;
+  margin: auto;
+  text-align: center;
 }
-
 
 @font-face {
     font-family: 'gossip';
     src: url('./assets/Benedict\ Regular.otf'); 
-  }
+}
 
   @font-face {
     font-family: "American Typewriter Bold";
@@ -51,13 +53,8 @@ h1 {
     text-align: center;
 }
 
-#logButt{
-    cursor: pointer; /* Change cursor to pointer on hover for better UX */
-}
-#aboutLips{
-    cursor: pointer;
-}
-#signUp, #spotifyButt{
+
+#signUp, #spotifyButt, #logout, #aboutLips, #logButt{
     cursor: pointer;
 }
 
@@ -120,8 +117,10 @@ background-repeat: repeat;
 #spotifyButt{
     height: 75px;
     width: 100px;
-    margin-left: 38%;
 }
 .asideSignUp{
     height: 25%;
+}
+#title a {
+    color: inherit;
 }

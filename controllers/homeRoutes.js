@@ -78,8 +78,10 @@ router.get('/login', (req, res) => {
 
 router.get('/about', async (req, res) => {
   try {
-    // Render the 'about' view with any necessary data
-    res.render('about', {});
+    // Render the 'about' view with the loggedIn status
+    res.render('about', {
+      loggedIn: req.session.loggedIn
+    });
   } catch (err) {
     res.status(500).json(err);
   }
