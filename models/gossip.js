@@ -3,7 +3,6 @@ const sequelize = require('../config/connection');
 
 class Gossip extends Model {}
 
-
 Gossip.init(
   {
     id: {
@@ -18,9 +17,12 @@ Gossip.init(
     },
     user: {
       type: DataTypes.STRING,
+      allowNull: true,
+      defaultValue: 'Anonymous',
     },
     source: {
-      type:DataTypes.STRING,
+      type: DataTypes.STRING,
+      allowNull: true,
     },
     story: {
       type: DataTypes.STRING,
@@ -29,7 +31,7 @@ Gossip.init(
   },
   {
     sequelize,
-    timestamps: false,
+    timestamps: true,
     freezeTableName: true,
     underscored: true,
     modelName: 'gossip',
