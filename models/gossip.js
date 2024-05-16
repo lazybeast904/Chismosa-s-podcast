@@ -16,12 +16,15 @@ Gossip.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    user: {
+      type: DataTypes.STRING,
+    },
+    source: {
+      type:DataTypes.STRING,
+    },
     story: {
       type: DataTypes.STRING,
       allowNull: false,
-    },
-    user: {
-      type: DataTypes.STRING,
     },
   },
   {
