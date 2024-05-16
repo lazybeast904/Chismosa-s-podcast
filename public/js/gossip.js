@@ -7,18 +7,23 @@ const gossipFormHandler = async (event) => {
     const story = document.querySelector('#storyField').value.trim();
     const userField = document.querySelector('#userField');
 
-    // let user;
-    // if (userField.checked) {
-    //     user = 'Anonymous';
-    // } else {
-    //     user = this.session.name;
-    // }
+    let user;
+    if (userField.checked) {
+        user = 'Anonymous';
+    } else {
+      const me = await fetch('/api/users/me', {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+      })
+      const me2 = await me.json()
+        user = me2.name;
+    }
 
     if (title && source && story) {
       // Send the e-mail and story to the server
       const response = await fetch('/api/gossip', {
         method: 'POST',
-        body: JSON.stringify({ title, source, story,}),
+        body: JSON.stringify({ title, source, story, user}),
         headers: { 'Content-Type': 'application/json' },
       });
   

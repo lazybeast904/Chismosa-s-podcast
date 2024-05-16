@@ -20,7 +20,7 @@ router.get('/', async (req, res) => {
         title: req.body.title,
         story: req.body.story,
         source: req.body.source,
-        // user: req.body.user
+        user: req.body.user
       });
   
       // Set up sessions with a 'loggedIn' variable set to `true`
