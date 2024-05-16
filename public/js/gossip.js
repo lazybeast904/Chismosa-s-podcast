@@ -1,38 +1,39 @@
 const gossipFormHandler = async (event) => {
-    // Stop the browser from submitting the form so we can do so with JavaScript
-    event.preventDefault();
-    // Gather the data from the form elements on the page
-    const title = document.querySelector('#titleField').value.trim();
-    const source = document.querySelector('#sourceField').value.trim();
-    const story = document.querySelector('#storyField').value.trim();
-    const userField = document.querySelector('#userField');
+  event.preventDefault();
 
-    let user;
-    if (userField.checked) {
-        user = 'Anonymous';
+  const title = document.querySelector('#titleField').value.trim();
+  const source = document.querySelector('#sourceField').value.trim();
+  const story = document.querySelector('#storyField').value.trim();
+  const userField = document.querySelector('#anon');
+
+  let user;
+  if (userField.checked) {
+    user = 'Anonymous';
+  } else {
+    const response = await fetch('/api/users/me', {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+    });
+    const userData = await response.json();
+    user = userData.name;
+  }
+
+  if (title && source && story) {
+    const response = await fetch('/api/gossip', {
+      method: 'POST',
+      body: JSON.stringify({ title, source, story, user }),
+      headers: { 'Content-Type': 'application/json' },
+    });
+
+    if (response.ok) {
+      alert('Thank you for your gossip!');
+      document.location.replace('/dashboard');
     } else {
-      const me = await fetch('/api/users/me', {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
-      })
-      const me2 = await me.json()
-        user = me2.name;
+      alert('Failed to Post Story');
     }
+  } else {
+    alert('Please fill out all required fields.');
+  }
+};
 
-    if (title && source && story) {
-      // Send the e-mail and story to the server
-      const response = await fetch('/api/gossip', {
-        method: 'POST',
-        body: JSON.stringify({ title, source, story, user}),
-        headers: { 'Content-Type': 'application/json' },
-      });
-  
-      if (response.ok) {
-        document.location.replace('/dashboard');
-      } else {
-        alert('Failed to Post Story');
-      }
-    }
-  };
-  
-  document.getElementById("gossipForm").addEventListener('click', gossipFormHandler);
+document.querySelector('#gossipForm').addEventListener('submit', gossipFormHandler);
