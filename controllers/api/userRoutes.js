@@ -1,6 +1,18 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 
+router.get('/', async (req, res) => {
+  try {
+    const users = await User.findAll({});
+
+    res.json(users);
+    
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+  });
+
 
 router.post('/', async (req, res) => {
   try {
@@ -10,13 +22,14 @@ router.post('/', async (req, res) => {
       password: req.body.password,
     });
 
-    // Set up sessions with a 'loggedIn' variable set to `true`
+    // Set up sessions
     req.session.save(() => {
       req.session.loggedIn = true;
       req.session.name = dbUserData.name;
-      req.session.isAdmin = dbUserData.isAdmin;
+      req.session.isAdmin = dbUserData.isAdmin; 
 
-      res.status(200).json(dbUserData);
+      // res.status(200).json(dbUserData);
+      res.redirect("/", {user:dbUserData, loggedIn:req.session.loggedIn})
     });
   } catch (err) {
     console.log(err);
@@ -25,44 +38,40 @@ router.post('/', async (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
+  console.log("log in route")
   try {
     const { email, password } = req.body;
 
-    // Check if the provided credentials match the admin's credentials
-    const isAdmin = email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD;
-
     let userData;
+    userData = await User.findOne({ where: { email: email } });
 
-    if (isAdmin) {
-      // If the user is an admin, set the user data accordingly
-      userData = {
-        id: 1, 
-        name: 'Admin',
-        email: process.env.ADMIN_EMAIL,
-        isAdmin: true,
-      };
-    } else {
-      // If not admin, proceed with regular user authentication
-      userData = await User.findOne({ where: { email: email } });
-
-      if (!userData || !(await userData.checkPassword(password))) {
-        // Invalid credentials
-        res.status(400).json({ message: 'Incorrect email or password, please try again' });
-        return;
-      }
+    if (!userData || !(await userData.checkPassword(password))) {
+      res.status(403).json({ message: 'Incorrect email or password, please try again' });
+      return;
     }
-
-    // Create session variables based on the logged-in user
+    req.session.save(() => {
     req.session.userId = userData.id;
     req.session.loggedIn = true;
-    req.session.name = userData.name;
-      req.session.isAdmin = userData.isAdmin;
+    req.session.name = userData.name; 
+    req.session.isAdmin = userData.isAdmin;
     // Send a JSON response indicating successful login
-    res.json({ user: userData, message: 'You are now logged in!', redirectTo: '/dashboard' });
-
+    // res.json({ user: userData, message: 'You are now logged in!', redirectTo: '/' });
+    res.redirect("/")
+  });
   } catch (err) {
+    console.log(err)
     res.status(400).json(err);
   }
+});
+
+router.get('/me', (req, res) => {
+  let name = "Anonymous"
+  if (req.session.loggedIn){
+    name = req.session.name
+  }
+
+  res.status(200).json({name})
+
 });
 
 router.post('/logout', (req, res) => {

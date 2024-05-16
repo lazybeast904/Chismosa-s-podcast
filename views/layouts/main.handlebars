@@ -17,7 +17,7 @@
       <div"row"><h1 id="title" class="column column-100 column-offset-5"> Las Chismosas</h1></div>
       <nav class="row row-baseline">
         {{#if loggedIn}}
-          <button class="btn navButt column column-offset-10" id="logout">logout</button>
+ <img id="logout" class="column lipButt column-25 column-offset-10" src="/css/assets/logoutLips.png" onclick="navigateTo('/')">
         {{else}}
           <img id="logButt" class="column lipButt column-25 column-offset-10" src="/css/assets/loginlips.png" onclick="navigateTo('/login')">
           {{#unless loggedIn}}
@@ -31,10 +31,7 @@
     </header>
   <main class="row ">
     <section class="column column-33 column-offset-33 modal" id="test">
-       {{#if loggedIn}}
-          {{else}}
     {{{ body }}}
-        {{/if}}
     </section>
     {{#unless loggedIn}}
       <section class="column column-5 column-offset-15"> </section>
