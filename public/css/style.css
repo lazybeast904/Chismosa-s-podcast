@@ -51,13 +51,8 @@ h1 {
     text-align: center;
 }
 
-#logButt{
-    cursor: pointer; /* Change cursor to pointer on hover for better UX */
-}
-#aboutLips{
-    cursor: pointer;
-}
-#signUp, #spotifyButt{
+
+#signUp, #spotifyButt, #logout, #aboutLips, #logButt{
     cursor: pointer;
 }
 
@@ -124,4 +119,7 @@ background-repeat: repeat;
 }
 .asideSignUp{
     height: 25%;
+}
+#title a {
+    color: inherit;
 }
