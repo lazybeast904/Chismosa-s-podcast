@@ -1,21 +1,26 @@
 [
-    {
-      "title": "A Test Story",
-      "source": "firsthand",
-      "user": "anon",
-      "story": "A mobile app that will send you notifications whenever a concert is playing in your area."
-    },
-    {
-      "title": "GOATS",
-      "source": "I made it up",
-      "user": "anon",
-      "story": "THEY BIT ME"
-    }
-    {
-      "title": "Founder",
-      "source": "My mom",
-      "user": "Not Josh",
-      "story": "I heard that the city of Austin wasn't founded by Stone Cold Steve Austin but I can't confirm it."
-    }
-  ]
-  
+  {
+    "title": "A Test Story",
+    "source": "firsthand",
+    "user": "anon",
+    "story": "A mobile app that will send you notifications whenever a concert is playing in your area."
+  },
+  {
+    "title": "GOATS",
+    "source": "I made it up",
+    "user": "anon",
+    "story": "THEY BIT ME"
+  },
+  {
+    "title": "Founder",
+    "source": "My mom",
+    "user": "Not Josh",
+    "story": "I heard that the city of Austin wasn't founded by Stone Cold Steve Austin but I can't confirm it."
+  },
+  {
+    "title": "My sister cut open her leg.",
+    "source": "Myself",
+    "user": "Lee",
+    "story": "My sister cut her leg open on a bush hog playing hide and go seek tag and had to get stiches on her birthday."
+  }
+]

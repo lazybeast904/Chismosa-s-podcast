@@ -1,6 +1,4 @@
 
-
-
 async function fetchDataFromAPI() {
     try {
         const response = await fetch('/api/gossip');
@@ -31,27 +29,49 @@ async function processDatabaseTable() {
 
 function createDataEntryDiv(dataObject) {
     // Create a div element
-    const div = document.createElement('div');
+    const gossipPost = document.createElement('div');
+    gossipPost.style.backgroundColor = "#8c52ff";
+    gossipPost.style.alignContent = "center";
+    gossipPost.style.marginTop = "20px";
+    gossipPost.style.width= "40vw";
+    gossipPost.style.marginLeft= "33px";
+    gossipPost.style.marginRight= "33px";
+    gossipPost.style.height= "25vw";
+    gossipPost.style.border= "5px solid black";
+
+
 
     // Create p elements to display the information
     const titleP = document.createElement('p');
     titleP.textContent = `Title: ${dataObject.title}`;
+    titleP.style.fontSize = "24px";
+    titleP.style.color = "white";
+
+    const userP = document.createElement('p');
+    userP.textContent = `By: ${dataObject.user}`;
+    userP.style.color = "white";
+    userP.style.fontSize = "14px";
 
     const sourceP = document.createElement('p');
     sourceP.textContent = `Source: ${dataObject.source}`;
+    sourceP.style.color = "white";
+    sourceP.style.fontSize = "14px";
 
     const storyP = document.createElement('p');
     storyP.textContent = `Story: ${dataObject.story}`;
+    storyP.style.color = "white";
+    storyP.style.fontSize = "18px";
 
     // Append the p elements to the div
-    div.appendChild(titleP);
-    div.appendChild(sourceP);
-    div.appendChild(storyP);
+    gossipPost.appendChild(titleP);
+    gossipPost.appendChild(userP);
+    gossipPost.appendChild(sourceP);
+    gossipPost.appendChild(storyP);
 
     // Append the div to the section with id "gossip"
     const gossipSection = document.getElementById('gossip');
     if (gossipSection) {
-        gossipSection.appendChild(div);
+        gossipSection.appendChild(gossipPost);
     } else {
         console.error('Section with id "gossip" not found');
     }
