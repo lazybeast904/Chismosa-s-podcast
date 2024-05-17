@@ -68,12 +68,8 @@ body{
 }
 
 main {
-    background-color: var(--sub-color1);
-opacity: 1;
-background-image:  linear-gradient(135deg, #edf7f5 25%, transparent 25%), linear-gradient(225deg, #edf7f5 25%, transparent 25%), linear-gradient(45deg, #edf7f5 25%, transparent 25%), linear-gradient(315deg, #edf7f5 25%, #8ad1c1 25%);
-background-position:  4px 0, 4px 0, 0 0, 0 0;
-background-size: 4px 4px;
-background-repeat: repeat;
+    background-image: url(./assets/backquotes.jpg);
+    background-size: contain;
 }
 
 .navButt{
