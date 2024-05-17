@@ -62,11 +62,29 @@ function createDataEntryDiv(dataObject) {
     storyP.style.color = "white";
     storyP.style.fontSize = "18px";
 
-    // Append the p elements to the div
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete';
+    deleteButton.addEventListener('click', async () => {
+        try {
+            const response = await fetch(`/api/gossip/${dataObject.id}`, {
+                method: 'DELETE'
+            });
+            if (!response.ok) {
+                throw new Error('Failed to delete data');
+            }
+            // Remove the div from the DOM if deletion is successful
+            gossipPost.remove();
+        } catch (error) {
+            console.error(error);
+        }
+    });
+
+    // Append the p elements and delete button to the div
     gossipPost.appendChild(titleP);
     gossipPost.appendChild(userP);
     gossipPost.appendChild(sourceP);
     gossipPost.appendChild(storyP);
+    gossipPost.appendChild(deleteButton);
 
     // Append the div to the section with id "gossip"
     const gossipSection = document.getElementById('gossip');

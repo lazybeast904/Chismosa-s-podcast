@@ -26,26 +26,43 @@ router.post('/', async (req, res) => {
   }
 });
   
-  router.get('/gossip/:id', async (req, res) => {
-    try {
-      const gossipData = await Gossip.findByPk(req.params.id, {
-        include: [
-          {
-            model: User,
-            attributes: ['name'],
-          },
-        ],
-      });
-  
+router.get('/:id', async (req, res) => {
+  try {
+      const gossipData = await Gossip.findByPk(req.params.id);
+      
+      if (!gossipData) {
+          return res.status(404).json({ message: 'Gossip not found' });
+      }
+
       const gossip = gossipData.get({ plain: true });
-  
-      res.render('gossip', {
-        ...gossip,
-        logged_in: req.session.logged_in
-      });
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });
+
+      res.json(gossip);
+
+  } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+router.delete('/:id', async (req, res) => {
+  try {
+      const gossipData = await Gossip.findByPk(req.params.id);
+      
+      if (!gossipData) {
+          return res.status(404).json({ message: 'Gossip not found' });
+      }
+
+      // Perform the deletion of the gossip entry
+      await gossipData.destroy();
+
+      res.json({ message: 'Gossip deleted successfully' });
+  } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+
+
   module.exports = router;
   
