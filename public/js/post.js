@@ -36,7 +36,9 @@ function createDataEntryDiv(dataObject) {
     gossipPost.style.width= "40vw";
     gossipPost.style.marginLeft= "33px";
     gossipPost.style.marginRight= "33px";
-    gossipPost.style.height= "40vw";
+    gossipPost.style.height= "25vw";
+    gossipPost.style.border= "5px solid black";
+
 
 
     // Create p elements to display the information
