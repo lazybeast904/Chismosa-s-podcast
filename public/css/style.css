@@ -12,7 +12,7 @@
 html,
 body,
 main{
-  height: 100%;
+    height: 100vw;
   display: flex;
   flex-flow: wrap;
   margin: auto;
@@ -116,8 +116,17 @@ main {
 }
 .asideSignUp {
     margin-top: 80px;
-    height: 24%;
+    height: 13%;
+    float: right;
 }
 #title a {
     color: inherit;
+}
+
+.gossip {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin-left: 20px;
+    align-content: flex-start;
 }

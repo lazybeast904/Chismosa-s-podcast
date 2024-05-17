@@ -27,7 +27,7 @@ const gossipFormHandler = async (event) => {
 
     if (response.ok) {
       alert('Thank you for your gossip!');
-      document.location.replace('/dashboard');
+      document.location.replace('/');
     } else {
       alert('Failed to Post Story');
     }
